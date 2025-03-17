@@ -25,6 +25,7 @@ export const defaultContentPageLayout: PageLayout = {
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
+    Component.Explorer(),
     Component.Flex({
       components: [
         {
@@ -34,10 +35,9 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
-    Component.DesktopOnly(Component.TableOfContents())
   ],
-  right: [],
+  right: [
+    Component.DesktopOnly(Component.TableOfContents())],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
