@@ -1,0 +1,64 @@
+# 1. Installation
+
+## Step 1: Install `dsp-iframe.html`
+
+As part of this API, an HTML page must be hosted on the DSP's [[What is an origin|origin]] (e.g. schema, domain, port).  
+The DSP iframe can live anywhere on the DSP's origin (defaults to `/dsp-iframe.html`) and must contain the following:
+
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="IB_ORIGIN_HERE/api/dsp-frame.js"></script>
+	</head>
+	<body></body>
+</html>
+```
+
+## Step 2: Load the API JavaScript
+
+There are two options when it comes to loading the JavaScript, depending on the workflow. It is assumed that the DSP will integrate this with their code that they give to their advertisers, but it also supports directly being loaded.
+
+### Option 1: Load within the advertiser page directly (cjs)
+
+Either manually or via JavaScript `createElement`, add the following to the document:
+
+```html
+<script src="PATH_TO_API_JS_ON_IMPBUS_ORIGIN"></script>
+```
+
+After which, the API is available via `ebapi` on the window and is ready to be [[Initial Setup|initialized]].
+
+```html
+<script>ebapi.init(DSP_ORIGIN);</script>
+```
+
+### Option 2: Usage as a module
+
+If you need to integrate it into an existing project that uses modules, it can be installed as such:
+
+```shell
+npm install --registry=PATH_TO_REGISTRY --save ebapi
+```
+
+After which, it can be imported and initialized:
+
+```javascript
+import ebapi from 'ebapi';
+
+// ...
+
+ebapi.init(DSP_ORIGIN);
+```
+
+#### Typescript compatibility
+
+If using Typescript, there are additional types that can be installed with:
+
+```shell
+npm install --registry=PATH_TO_REGISTRY --saveDev ebapi@types
+```
+
+## Up Next
+
+See [[Initial Setup]].
