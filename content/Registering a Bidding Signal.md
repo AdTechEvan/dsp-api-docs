@@ -1,25 +1,16 @@
----
-parent: "[[Objectives/Integrate External Demand Into Our  KV-Based Auction/API Documentation/index]]"
-prev: "[[Initial Setup]]"
----
-# 3. Registering a bidding signal
-
-When a user performs an action that warrants registering a bidding signal, the following steps occur.  
-Said action may be as simple as loading a page.
-
-## Signature
+# Signature
 
 ```typescript
 ebapi.registerBiddingSignal(name:string, value:string): Promise
 ```
 
 - **Arguments**
-	- `name` (string) - The signal name.
-	- `value` (string) - The signal value.
+ 	- `name` (string) - The signal name.
+ 	- `value` (string) - The signal value.
 - **Returns**
-	- A `Promise` that resolves once the operation is complete.
+ 	- A `Promise` that resolves once the operation is complete.
 
-## Example
+# Example
 
 ```typescript
 
@@ -30,11 +21,11 @@ ebapi.init("https://my-dsp.example");
 // ...
 
 ebapi.registerBiddingSignal("MY_SIGNAL", "124849560").then(result => {
-	console.log("Bidding signal registered?", result);
+ console.log("Bidding signal registered?", result);
 })
 ```
 
-## Origin hand-off during `registerBiddingSignals`
+# Origin hand-off during `registerBiddingSignals`
 
 | Step | Executed by       | Operation                                          | Running in Origin |
 | ---- | ----------------- | -------------------------------------------------- | ----------------- |
@@ -47,7 +38,7 @@ ebapi.registerBiddingSignal("MY_SIGNAL", "124849560").then(result => {
 | 7    | `JoinIG`          | Return `reject-frame` if the DSP has reached limit | ImpBus            |
 | 8    | `entry-iframe`    | Render returned frame                              | ImpBus            |
 
-## Sequence Diagram
+# Sequence Diagram
 
 ```mermaid
 
@@ -79,11 +70,11 @@ sequenceDiagram
     participant Browser
     participant IB as ImpBus
 
-	A_IF->>Browser: Call joinAdInterestGroup<br/>(Privacy Sandbox)
-	Browser->>IB: Permissions delegation request<br/>(Can DSP joinAdInterestGroup?)
-	IB->>Browser: Approve or deny
-	Browser->>Browser: If approved,<br/>execute joinAdInterestGroup
-	A_IF->>A_IF: Notify api.js via<br/>window.top.postMessage(...)<br />that the join was successful<br/>
+ A_IF->>Browser: Call joinAdInterestGroup<br/>(Privacy Sandbox)
+ Browser->>IB: Permissions delegation request<br/>(Can DSP joinAdInterestGroup?)
+ IB->>Browser: Approve or deny
+ Browser->>Browser: If approved,<br/>execute joinAdInterestGroup
+ A_IF->>A_IF: Notify api.js via<br/>window.top.postMessage(...)<br />that the join was successful<br/>
 ```
 
 ## If `reject_url` is loaded
@@ -92,5 +83,5 @@ sequenceDiagram
 
 sequenceDiagram
     participant A_IF as reject-iframe<br/>(ImpBus origin)
-	A_IF->>A_IF: Notify api.js via<br/>window.top.postMessage(...)<br />that the join was rejected<br/>
+ A_IF->>A_IF: Notify api.js via<br/>window.top.postMessage(...)<br />that the join was rejected<br/>
 ```
