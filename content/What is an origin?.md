@@ -1,8 +1,10 @@
 # What is a HTTP origin
 
-An **HTTP origin** is a combination of a URL's **scheme** (e.g., `http` or `https`), **host** (domain or IP address), and **port** that uniquely identifies where a request is coming from.
-
-- The port can generally be omitted and will behave as if it is equal to `80` when the scheme is `http`, or equal to `443` when the scheme is `https`.
+An **HTTP origin** uniquely identifies where a request is coming from, and is a combination of a URL's:
+- **scheme** (e.g., `http` or `https`)
+- **host** (domain or IP address)
+- **port** 
+	- The port can generally be omitted, and will behave as if it is equal to `80` when the scheme is `http`, or equal to `443` when the scheme is `https`.
 
 ## Examples
 

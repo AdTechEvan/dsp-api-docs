@@ -1,8 +1,6 @@
 ---
 title: External Bidder JavaScript API
 ---
-
-
 # Purpose
 
 This API enables Demand-Side Platforms (DSPs) to register bidding signals with our system in such a way to allow them to participate in private auctions.
@@ -16,41 +14,13 @@ At its core, this API encodes bidding signals (name, value) within [interest gro
 
 2. **Delegation on the DSP Origin**  
    The API enables permission delegation on the DSP's origin, which is essential for PAAPI-based auctions. See [FLEDGE.md §13: Permission Delegation](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#13-permission-delegation) for additional context.
- - _(devnote) This is blocked until Chrome fixes [this bug](https://chromium.googlesource.com/chromium/src/+/main/content/browser/interest_group/interest_group_permissions_checker.h#42)._
+	- _(devnote) This is blocked until Chrome fixes [this bug](https://chromium.googlesource.com/chromium/src/+/main/content/browser/interest_group/interest_group_permissions_checker.h#42)._
 
 # Get Started
 
-1. [[Installation]]
-2. [[Initial Setup]]
-3. [[Registering a Bidding Signal]]
-4. _Follow-up,_ [[Utilization during runAdAuction]]
+- [[1. Install]]
+- [[2. Initialize]]
+- [[3. Registering a Bidding Signal]]
+-  _Follow-up,_ [[Utilization during runAdAuction]]
 
-# API Functions
-
-## `init(dspOrigin:string, opts:Optional<InitOpts>): Promise`
-
-- Initialize the external bidder API, with the given `dspOrigin`.
-- Bidding signals will not be successfully registered until this function is complete.
-- See [[Initial Setup]] for an in-depth look of its functionality.
-
-## `registerBiddingSignal(name:string, value:string): Promise`
-
-- Register a bidding signal by storing it within a managed interest group.
-- Calls that occur prior to `init(...)` being called will be queued up and run after initialization completes.
-- See [[Registering a Bidding Signal]] for more information.
-
-### `destroy():void`
-
-- Detach all event listeners.
-- Remove iframe.
-
-## Helper functions
-
-### `supportsInterestGroups(): boolean`
-
-- Determines if the web browser supports interest groups.  
-- This will additionally get called during `init()`.
-
-### `isSignalValid(value:string):boolean`
-
-- Will return true if a given input is valid to being a signal name/value. The current limits are that the value is less than `MAX_CHARS` characters long and comprises `A-Za-z0-9`. This is used during `registerBiddingSignals`.
+![[API Functions]]
